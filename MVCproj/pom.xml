@@ -9,7 +9,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.8</java-version>
-		<!-- 최신 버전은 4.3.3이지만 호환성을 위해 4.3.0으로 조정함 -->
+		<!-- 호환성을 위해 4.3.0으로 조정함 -->
 		<org.springframework-version>4.3.0.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.7.21</org.slf4j-version>
@@ -22,14 +22,6 @@
 		</repository>
 	</repositories>
 	<dependencies>
-		<!-- 이미지 썸네일 -->
-		<!-- https://mvnrepository.com/artifact/org.imgscalr/imgscalr-lib -->
-		<dependency>
-		    <groupId>org.imgscalr</groupId>
-		    <artifactId>imgscalr-lib</artifactId>
-		    <version>4.2</version>
-		</dependency>
-				
 		<!-- AOP 추가 -->
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<dependency>
