@@ -11,32 +11,32 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-// Advice : °øÅë¾÷¹«¸¦ Áö¿øÇÏ´Â Å¬·¡½º
-@Component // ±âÅ¸ bean
+// Advice : ê³µí†µì—…ë¬´ë¥¼ ì§€ì›í•˜ëŠ” í´ë˜ìŠ¤
+@Component // ê¸°íƒ€ bean
 @Aspect // AOP bean
 public class MessageAdvice {
 	private static final Logger logger = LoggerFactory.getLogger(MessageAdvice.class);
 	
-	// @Before(´ë»ó:È£ÃâÀü), @After(´ë»ó:È£ÃâÈÄ), @Around(´ë»ó:È£ÃâÀü ÈÄ)
-	@Before("execution(* com.example.spring02.service.message.MessageService*.*(..))")
+	// @Before(ëŒ€ìƒ:í˜¸ì¶œì „), @After(ëŒ€ìƒ:í˜¸ì¶œí›„), @Around(ëŒ€ìƒ:í˜¸ì¶œì „ í›„)
+	@Before("execution(* com.chris.mvcprojsecond.service.message.MessageService*.*(..))")
 	public void startLog(JoinPoint jp){
-		// ÇÙ½É¾÷¹«ÀÇ Å¬·¡½º,¸Å¼­µå, ¸Å°³º¯¼ö ·Î±ë 
-		logger.info("ÇÙ½É¾÷¹« ÄÚµåÁ¤º¸  : "+jp.getSignature());
-		logger.info("¸Ş¼­µå : "+jp.getSignature().getName());
-		logger.info("¸Å°³º¯¼ö:"+Arrays.toString(jp.getArgs()));
+		// í•µì‹¬ì—…ë¬´ì˜ í´ë˜ìŠ¤,ë§¤ì„œë“œ, ë§¤ê°œë³€ìˆ˜ ë¡œê¹… 
+		logger.info("í•µì‹¬ì—…ë¬´ ì½”ë“œì •ë³´  : "+jp.getSignature());
+		logger.info("ë©”ì„œë“œ : "+jp.getSignature().getName());
+		logger.info("ë§¤ê°œë³€ìˆ˜:"+Arrays.toString(jp.getArgs()));
 	}
 	
-	// method ½ÇÇà ½Ã°£ È®ÀÎ, @Around : ÇÙ½É¾÷¹« ÀüÈÄ¿¡ ÀÚµ¿È£Ãâ, ProceedingJoinPoint
-	@Around("execution(* com.example.spring02.service.message.MessageService*.*(..))")
+	// method ì‹¤í–‰ ì‹œê°„ í™•ì¸, @Around : í•µì‹¬ì—…ë¬´ ì „í›„ì— ìë™í˜¸ì¶œ, ProceedingJoinPoint
+	@Around("execution(* com.chris.mvcprojsecond.service.message.MessageService*.*(..))")
 	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable {
-		// ÇÙ½É¾÷¹« ½ÇÇà Àü
+		// í•µì‹¬ì—…ë¬´ ì‹¤í–‰ ì „
 		long start = System.currentTimeMillis(); 
-		// ÇÙ½É¾÷¹« ½ÇÇà
+		// í•µì‹¬ì—…ë¬´ ì‹¤í–‰
 		Object result = pjp.proceed(); 
-		// ÇÙ½É¾÷¹« ½ÇÇà ÈÄ
+		// í•µì‹¬ì—…ë¬´ ì‹¤í–‰ í›„
 		long end = System.currentTimeMillis(); 
-		// ÇÙ½É¾÷¹« ½ÇÇà½Ã°£ ¿¬»ê
-		logger.info(pjp.getSignature().getName()+"¸Ş¼­µå ½ÇÇà½Ã°£:"+(end-start));
+		// í•µì‹¬ì—…ë¬´ ì‹¤í–‰ì‹œê°„ ì—°ì‚°
+		logger.info(pjp.getSignature().getName()+"ë©”ì„œë“œ ì‹¤í–‰ì‹œê°„:"+(end-start));
 		logger.info("==========================================");
 		return result;
 	}
